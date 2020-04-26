@@ -1,11 +1,18 @@
-import { handleActions } from 'redux-actions';
+import { handleActions, Action } from "redux-actions";
 import { currency } from "../actionTypes";
+import { CurrencySymbol } from "../contracts";
 
-const { GET_CURRENCY_SYMBOLS } = currency;
+const { SET_CURRENCY_SYMBOLS: GET_CURRENCY_SYMBOLS } = currency;
 
-export default handleActions(
+export default handleActions<Map<string, CurrencySymbol>>(
   {
-    [GET_CURRENCY_SYMBOLS]: (state: any, payload: any) => ({ ...state }),
+    [GET_CURRENCY_SYMBOLS]: (
+      prevState ,
+      { payload }
+    ) => ({
+      ...prevState,
+      ...payload,
+    }),
   },
-  {}
+  new Map()
 );

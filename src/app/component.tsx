@@ -78,7 +78,7 @@ export default ({ currency, rates, getConversionRate }: AppProps) => {
         </select>
       </div>
       {!canConvertCurrency ? (
-        <div className="row error">Cannot convert from {fromCurrency}</div>
+        <div className="row error">Cannot convert from {fromCurrency} to {toCurrency}</div>
       ) : (
         <>
           <div className="row">

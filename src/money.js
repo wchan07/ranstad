@@ -1,3 +1,4 @@
+/* eslint no-undef: "off"*/
 /*!
 * money.js / fx() v0.2
 * Copyright 2014 Open Exchange Rates

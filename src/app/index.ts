@@ -25,29 +25,34 @@
 
 // Use React but do not include jQuery in your project.
 
-import React from 'react';
-import logo from './logo.svg';
-import './app.css';
+import { connect, MapStateToProps } from "react-redux";
+import { createSelector } from "reselect";
+import component, { AppProps } from "./component";
+import { StoreState } from "../contracts";
+import { getConversionRate } from "../actions/rates";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit 2 <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+type StateProps = Pick<AppProps, 'currency' | 'rates'>;
+type OwnProps = Pick<AppProps, "currency">;
+type DispatchProps = Omit<AppProps, keyof (StateProps & OwnProps)>;
 
-export default App;
+const mapStateToProps: MapStateToProps<
+  StateProps,
+  OwnProps,
+  StoreState
+> = createSelector(
+  ({ currency }: StoreState) => currency,
+  ({ rates }: StoreState) => rates,
+  (currency, rates) => ({
+    currency,
+    rates
+  })
+);
+
+const dispatchProps: DispatchProps = {
+  getConversionRate,
+};
+
+export const App = connect<StateProps, DispatchProps, OwnProps, StoreState>(
+  mapStateToProps,
+  dispatchProps
+)(component);

@@ -8,6 +8,18 @@ export interface CurrencySymbol {
   name_plural: string;
 }
 
+export type CurrencyRates = Dictionary<Dictionary<number> | null>;
+
 export interface StoreState {
-  currency: Map<string, CurrencySymbol>
+  currency: Map<string, CurrencySymbol>;
+  rates: CurrencyRates;
+}
+
+export interface RatesResponse {
+  rates: Map<string, number>;
+  base: string;
+}
+
+export interface Dictionary<T = any> {
+  [key: string]: T;
 }

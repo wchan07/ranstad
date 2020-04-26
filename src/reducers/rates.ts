@@ -1,11 +1,15 @@
-import { handleActions } from 'redux-actions';
+import { handleActions } from "redux-actions";
 import { rates } from "../actionTypes";
+import { CurrencyRates } from "../contracts";
 
-const {GET_CONVERSION_RATES  } = rates;
+const { SET_CONVERSION_RATES } = rates;
 
-export default handleActions(
+export default handleActions<CurrencyRates>(
   {
-    [GET_CONVERSION_RATES]: (state: any, payload: any) => ({ ...state }),
+    [SET_CONVERSION_RATES]: (state: any, { payload }) => ({
+      ...state,
+      ...payload,
+    }),
   },
   {}
 );

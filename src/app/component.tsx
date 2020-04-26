@@ -7,7 +7,7 @@ import NumberInput from './numberInput';
 declare const window: any;
 
 export type AppProps = {
-  currency?: Map<string, CurrencySymbol>;
+  currency?: Dictionary<CurrencySymbol>;
   rates?: CurrencyRates;
   getConversionRate: (rates: string) => void;
 };

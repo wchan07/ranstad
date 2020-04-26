@@ -11,12 +11,12 @@ export interface CurrencySymbol {
 export type CurrencyRates = Dictionary<Dictionary<number> | null>;
 
 export interface StoreState {
-  currency: Map<string, CurrencySymbol>;
+  currency: Dictionary<CurrencySymbol>;
   rates: CurrencyRates;
 }
 
 export interface RatesResponse {
-  rates: Map<string, number>;
+  rates: Dictionary<number>;
   base: string;
 }
 
